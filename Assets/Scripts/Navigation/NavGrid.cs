@@ -48,26 +48,26 @@ public class NavGrid : MonoBehaviour
                 //connect to EXISTING previous nodes
                 if(x > 0)
                 {
-                    Navigation.StitchNodes(node, nodes[x-1, y]);
+                    NavUtil.StitchNodes(node, nodes[x-1, y]);
 
                     if(y > 0)
                     {
-                        Navigation.StitchNodes(node, nodes[x, y-1]);
+                        NavUtil.StitchNodes(node, nodes[x, y-1]);
                     }
 
                     if (allowDiagonals)
                     {
                         if (y + 1 < gridResolution.y)
-                            Navigation.StitchNodes(node, nodes[x - 1, y + 1]);
+                            NavUtil.StitchNodes(node, nodes[x - 1, y + 1]);
 
                         if (y  > 0)
-                            Navigation.StitchNodes(node, nodes[x - 1, y - 1]);
+                            NavUtil.StitchNodes(node, nodes[x - 1, y - 1]);
                     }
                 }
                 else
                 if(y  > 0)
                 {
-                    Navigation.StitchNodes(node, nodes[x, y-1]);
+                    NavUtil.StitchNodes(node, nodes[x, y-1]);
                 }
 
                 nodes[x, y] = node;

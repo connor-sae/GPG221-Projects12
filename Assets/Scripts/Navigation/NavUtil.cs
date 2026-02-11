@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public static class Navigation
+public static class NavUtil
 {
+    public static bool diag;
+    public static NavSolver activeSolver {get; private set;}
 
     public static void StitchNodes(NavNode navNode1, NavNode navNode2, bool ignoreObstructed = true)
     {
@@ -28,5 +30,11 @@ public static class Navigation
                 nodes[j].ConnectToNode(nodes[i]);
             }
         }
+    }
+
+
+    public static void SetActiveSolver(NavSolver solver)
+    {
+        activeSolver = solver;
     }
 }

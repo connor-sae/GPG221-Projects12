@@ -13,21 +13,6 @@ public class NavNode : MonoBehaviour
 
     public List<NavNode> linkedNodes = new();
 
-    private void OnDrawGizmos()
-    {
-        if(obstructed)
-            Gizmos.color = Color.red;
-        else
-            Gizmos.color = Color.green;
-
-        Gizmos.DrawWireSphere(transform.position, radius);
-
-        Gizmos.color = Color.white;
-        foreach(NavNode otherNode in linkedNodes)
-        {
-            Gizmos.DrawLine(transform.position, otherNode.transform.position);
-        }
-    }
 
     public void UpdateBounds()
     {
