@@ -15,6 +15,10 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
             return I;
         }
+        set
+        {
+            I = value;
+        }
     }
 
     void Awake()
@@ -25,6 +29,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
         else
         {
+            Debug.LogWarning($"Duplicate {typeof(T)}: \"{name}\" was destroyed");
             Destroy(gameObject);
         }
     }

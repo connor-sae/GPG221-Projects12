@@ -1,0 +1,37 @@
+using GPG221.AI;
+using GPG221.AI.Solvers;
+using UnityEngine;
+
+public class GizmoNavAgent : MonoBehaviour
+{
+    public Transform startPoint;
+    public Transform endPoint;
+
+    private NavPath navPath;
+    public void Generate()
+    {
+        AStarSolver.instance.GeneratePath(startPoint.position, endPoint.position, out navPath);
+        //Debug.Log(navPath.status);
+    }
+
+    void FixedUpdate()
+    {
+        Generate();
+    }
+
+
+
+    void OnDrawGizmos()
+    {
+        if(navPath != null && navPath.status == PathStatus.SOLVED)
+        {
+            Gizmos.color = Color.yellow;
+            Vector3 lastPos = startPoint.position;
+            foreach(Vector3 pos in navPath.points)
+            {
+                Gizmos.DrawLine(lastPos, pos);
+                lastPos = pos;
+            }
+        }
+    }
+}

@@ -1,19 +1,26 @@
-using System.Drawing;
 using UnityEngine;
 
+[System.Serializable]
 public class NavPath
 {
     public PathStatus status {get; private set;}
     public Vector3[] points;
 
+    public NavPath()
+    {
+        status = PathStatus.UNSOLVED;
+    }
+
     public void SetPathPoints(Vector3[] pathPoints)
     {
+        status = PathStatus.SOLVED;
         points = pathPoints;
     }
 
-    public void SetStatus(PathStatus pathStatus)
+    public void Fail(string failReason)
     {
-        status = pathStatus;
+        status = PathStatus.FAILED;
+        Debug.Log("Path generation failed: ");
     }
 }
 

@@ -1,5 +1,9 @@
 using UnityEditor;
 using UnityEngine;
+using GPG221.AI.Solvers;
+
+namespace GPG221.AI.Editors
+{
 
 [CustomEditor(typeof(NavSolver))]
 public class NavSolverEditor : Editor
@@ -28,3 +32,5 @@ public class NavSolverEditor : Editor
 
 [CustomEditor(typeof(AStarSolver))]
 public class AStarSolverEditor : NavSolverEditor {}
+
+}

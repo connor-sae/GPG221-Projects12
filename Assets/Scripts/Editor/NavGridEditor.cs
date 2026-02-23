@@ -1,6 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 
+namespace GPG221.AI.Editors
+{
+
+
 [CustomEditor(typeof(NavGrid))]
 public class NavGridEditor : Editor
 {
@@ -18,4 +22,6 @@ public class NavGridEditor : Editor
             ((NavGrid)target).Clear();
         }
     }
+}
+
 }

@@ -1,6 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 
+namespace GPG221.AI.Editors
+{
+
+
 [CustomEditor(typeof(NavNode))]
 public class NavNodeEditor : Editor
 {
@@ -12,5 +16,11 @@ public class NavNodeEditor : Editor
         {
             ((NavNode)target).UpdateBounds();
         }
+        if(GUILayout.Button("Update TraversiblePaths"))
+        {
+            ((NavNode)target).DisconnectObstructedConnections();
+        }
     }
+}
+
 }

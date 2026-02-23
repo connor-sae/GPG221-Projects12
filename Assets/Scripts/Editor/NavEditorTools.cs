@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEditor;
 
+namespace GPG221.AI.Editors
+{
 public class NavEditorTools : EditorWindow {
     
     //[MenuItem("Navigation")]
@@ -22,4 +24,5 @@ public class NavEditorTools : EditorWindow {
     //     if (GUILayout.Button("Say Hello"))
     //         Debug.Log("Hello World");
     // }
+}
 }

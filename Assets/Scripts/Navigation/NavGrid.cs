@@ -1,4 +1,8 @@
+using GPG221.AI.Solvers;
 using UnityEngine;
+
+namespace GPG221.AI
+{
 
 [RequireComponent(typeof(BoxCollider))]
 public class NavGrid : MonoBehaviour
@@ -14,7 +18,6 @@ public class NavGrid : MonoBehaviour
 
     public void Generate()
     {
-        
         nodes = new NavNode[gridResolution.x, gridResolution.y];
 
         if(!TryGetComponent(out collider))
@@ -41,8 +44,8 @@ public class NavGrid : MonoBehaviour
 
 
                 //test if obstructed
-                node.radius = NodeRadiusFactor * (dX + dZ) * 0.25f;
-                node.obstruction = obstructionMask;
+                node.obstructionRadius = NodeRadiusFactor * (dX + dZ) * 0.25f;
+                node.obstructionMask = obstructionMask;
                 node.UpdateBounds();
 
                 //connect to EXISTING previous nodes
@@ -69,9 +72,11 @@ public class NavGrid : MonoBehaviour
                 {
                     NavUtil.StitchNodes(node, nodes[x, y-1]);
                 }
+                
 
                 nodes[x, y] = node;
             }
+            
         }
 
 
@@ -86,4 +91,6 @@ public class NavGrid : MonoBehaviour
             nodes = new NavNode[0,0];
         }
     }
+
+}
 }
