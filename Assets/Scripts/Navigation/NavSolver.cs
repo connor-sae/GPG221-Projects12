@@ -50,6 +50,7 @@ namespace GPG221.AI.Solvers
             //OnDrawGizmos();
         }
 
+
         public void RegisterNavNodes(NavNode[] addNodes)
         {
             NavNode[] oldNodes = navNodes;

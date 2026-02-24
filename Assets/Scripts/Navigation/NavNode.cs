@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using GPG221.AI;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+[RequireComponent(typeof(NavNodeDeleteCatcher))]
 public class NavNode : MonoBehaviour
 {
     public bool obstructed { get; private set; }
@@ -112,12 +115,6 @@ public class NavNode : MonoBehaviour
             linkedNodes.Add(otherNode);
     }
 
-    void OnDestroy()
-    {
-        foreach(NavNode node in linkedNodes)
-        {
-            node.linkedNodes.Remove(this);
-        }
-    }
+    
 }
 
