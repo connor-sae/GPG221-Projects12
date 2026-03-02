@@ -100,6 +100,15 @@ public class NavNode : MonoBehaviour
             }
     }
 
+    public void EnsureLinks()
+    {
+        foreach(NavNode node in linkedNodes)
+        {
+            if(!node.linkedNodes.Contains(this))
+                node.linkedNodes.Add(this);
+        }
+    }
+
     public bool NodeConnectionObstructed(NavNode otherNode)
     {
         Vector3 direction = otherNode.transform.position - transform.position;
