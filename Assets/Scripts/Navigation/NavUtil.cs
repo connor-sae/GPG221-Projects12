@@ -2,6 +2,7 @@ using UnityEngine;
 using GPG221.AI.Solvers;
 using UnityEditor.Experimental.GraphView;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 namespace GPG221.AI
 {
@@ -13,6 +14,11 @@ namespace GPG221.AI
         {
             get
             {
+                if(NavSolver.instance == null)
+                {
+                    NavSolver.instance = GameObject.FindAnyObjectByType<NavSolver>();
+                }
+                    
                 return NavSolver.instance;
             }
         }
@@ -161,6 +167,21 @@ namespace GPG221.AI
         public static void SetActiveSolver(NavSolver solver)
         {
             NavSolver.instance = solver;
+        }
+
+        public static void SeverNodes(NavNode[] nodes)
+        {
+            if (nodes.Length <= 1)
+                return;
+
+            for (int i = 0; i < nodes.Length; i++) 
+            {
+                for (int j = i+1; j < nodes.Length; j++)
+                {
+                    nodes[i].linkedNodes.Remove(nodes[j]);
+                    nodes[j].linkedNodes.Remove(nodes[i]);
+                }
+            }
         }
 
         public static void PluckNode(NavNode node)

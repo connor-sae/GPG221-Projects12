@@ -14,12 +14,15 @@ public class NavGridEditor : Editor
 
         if(GUILayout.Button("Generate"))
         {
-            ((NavGrid)target).Clear();
-            ((NavGrid)target).Generate();
+            ((NavGrid)target).ReGenerate();
         }
-        if (GUILayout.Button("Clear"))
+        if (GUILayout.Button("Clear Obstructed"))
         {
-            ((NavGrid)target).Clear();
+            ((NavGrid)target).DestroyObstructedNodes();
+        }
+        if (GUILayout.Button("Clear All"))
+        {
+            ((NavGrid)target).ClearChildren();
         }
     }
 }

@@ -20,7 +20,7 @@ public class NavSolverEditor : Editor
         if(GUILayout.Button(isActive ? "Solver is Active" : "Set As Active Solver"))
         {
             NavUtil.SetActiveSolver(solver);
-            solver.ReRegisterAllNavNodes();
+            //solver.ReRegisterAllNavNodes();
         }
 
         if(GUILayout.Button("Re-Register All Nodes with solver"))

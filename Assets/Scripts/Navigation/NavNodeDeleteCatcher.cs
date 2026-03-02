@@ -9,11 +9,8 @@ namespace GPG221.AI
         void OnDestroy()
         {
             NavNode node = GetComponent<NavNode>();
-            foreach(NavNode linked in node.linkedNodes)
-            {
-                linked.linkedNodes.Remove(node);
-            }
-            NavUtil.activeSolver.DeRegisterNavNodes(new NavNode[] {node});
+            NavUtil.PluckNode(node);
+            NavUtil.activeSolver?.DeRegisterNavNodes(new NavNode[] {node});
         }
     }
 }

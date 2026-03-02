@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace GPG221.AI.Solvers
@@ -53,19 +54,21 @@ namespace GPG221.AI.Solvers
 
         public void RegisterNavNodes(NavNode[] addNodes)
         {
-            NavNode[] oldNodes = navNodes;
-            navNodes = new NavNode[oldNodes.Length + addNodes.Length];
+            List<NavNode> newNodes = new();
+            newNodes = navNodes.ToList();
             
-            for(int i = 0; i < oldNodes.Length; i++)
+            foreach(NavNode addNode in addNodes)
             {
-                navNodes[i] = oldNodes[i];
-            } 
-
-            for(int j = 0; j < addNodes.Length; j++)
-            {
-                navNodes[j + oldNodes.Length] = addNodes[j];
+                if (!newNodes.Contains(addNode))
+                    newNodes.Add(addNode);
             }
-            //OnDrawGizmos();
+            
+            navNodes = newNodes.ToArray();
+        }
+
+        public bool IsActive()
+        {
+            return NavUtil.activeSolver == this;
         }
 
         #region visualization
@@ -77,7 +80,8 @@ namespace GPG221.AI.Solvers
         [SerializeField] private bool visualizeNodeRadius;
         private void OnDrawGizmos()
         {
-            if(navNodes != null)
+            if(IsActive()  && navNodes != null)
+            {
                 foreach(NavNode node in navNodes)
                 {
                     if(node == null) return;
@@ -119,6 +123,13 @@ namespace GPG221.AI.Solvers
                         }
                     }
                 }
+                Gizmos.color = new Color(0.2f, 0.3f, 1f);
+                foreach(NavNode selectedNode in Selection.GetFiltered<NavNode>(SelectionMode.ExcludePrefab))
+                {
+                    Gizmos.DrawSphere(selectedNode.transform.position, 0.3f);
+                }
+            }
+
         }
 
 
