@@ -10,7 +10,7 @@ public class GizmoNavAgent : MonoBehaviour
     private NavPath navPath;
     public void Generate()
     {
-        AStarSolver.instance.GeneratePath(startPoint.position, endPoint.position, out navPath);
+        NavUtil.activeSolver.GeneratePath(startPoint.position, endPoint.position, out navPath);
         //Debug.Log(navPath.status);
     }
 

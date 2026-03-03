@@ -8558,10 +8558,10 @@ MonoBehaviour:
   - {fileID: 1237703148}
   - {fileID: 1591708365}
   - {fileID: 2026228768}
-  - {fileID: 937692474}
   - {fileID: 561826816}
-  - {fileID: 569034132}
   - {fileID: 1132637585}
+  - {fileID: 569034132}
+  - {fileID: 937692474}
 --- !u!114 &145496820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31462,9 +31462,6 @@ MonoBehaviour:
   linkedNodes:
   - {fileID: 1132637585}
   - {fileID: 876625155}
-  - {fileID: 711792864}
-  - {fileID: 937692474}
-  - {fileID: 145496819}
 --- !u!114 &569034133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41060,7 +41057,6 @@ MonoBehaviour:
   - {fileID: 1587880616}
   - {fileID: 1990140112}
   - {fileID: 1132637585}
-  - {fileID: 569034132}
 --- !u!114 &711792865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68410,9 +68406,9 @@ MonoBehaviour:
   - {fileID: 876625155}
   - {fileID: 711792864}
   - {fileID: 1587880616}
-  - {fileID: 569034132}
   - {fileID: 145496819}
   - {fileID: 561826816}
+  - {fileID: 569034132}
 --- !u!114 &1132637586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75765,7 +75761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1270652406
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95946,7 +95942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4848335651247860095, guid: 00fa223c0e91a954387b1d20e65b6270, type: 3}
       propertyPath: visualizeNodePaths
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4848335651247860095, guid: 00fa223c0e91a954387b1d20e65b6270, type: 3}
       propertyPath: navNodes.Array.size
