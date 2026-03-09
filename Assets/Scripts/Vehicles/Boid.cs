@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Avoidance))]
-[RequireComponent(typeof(Alignment))]
-[RequireComponent(typeof(Cohesion))]
+// [RequireComponent(typeof(Avoidance))]
+// [RequireComponent(typeof(Alignment))]
+// [RequireComponent(typeof(Cohesion))]
 public class Boid : Agent {}

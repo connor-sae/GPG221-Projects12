@@ -33,4 +33,9 @@ public class NavSolverEditor : Editor
 [CustomEditor(typeof(AStarSolver))]
 public class AStarSolverEditor : NavSolverEditor {}
 
+[CustomEditor(typeof(AStarVisualiser))]
+public class AStarVisualiser : AStarSolver {}
+
 }
+
+

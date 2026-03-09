@@ -18,8 +18,8 @@ namespace GPG221.AI.Solvers
             targetNode = new GameObject("Target Nav node", typeof(NavNode)).GetComponent<NavNode>();
         }
 
-        List<NavNode> openNodes;
-        List<NavNode> closedNodes;
+        protected List<NavNode> openNodes;
+        protected List<NavNode> closedNodes;
         int solverCallID = 0;
 
         public override void GeneratePath(Vector3 origin, Vector3 target, out NavPath navPath)
@@ -44,7 +44,7 @@ namespace GPG221.AI.Solvers
             
             openNodes = new();
             closedNodes = new();
-            NavNode[] startNodes = NavUtil.GetNodesInDistance(origin, targetGridStitchThreshold);
+            NavNode[] startNodes = NavUtil.GetNodesInDistance(origin, originGridStitchThreshold);
 
             if(startNodes.Length <= 0)
             {
@@ -94,14 +94,22 @@ namespace GPG221.AI.Solvers
 
             // current node is target node!!
             // collect path by moving backwards
-            List<Vector3> nodePath = new();
-            while(currentNode.lastNode != null)
+            List<NavNode> nodePath = new();
+            List<Vector3> pointPath = new();
+            while(currentNode.previousNode != null)
             {
-                nodePath.Insert(0, currentNode.transform.position);
-                currentNode = currentNode.lastNode;
+                nodePath.Insert(0, currentNode);
+                pointPath.Insert(0, currentNode.transform.position);
+                currentNode = currentNode.previousNode;
             }
 
-            navPath.SetPathPoints(nodePath.ToArray()); // finished!!
+            if(!excludeFirstNode)
+            {
+                nodePath.Insert(0, currentNode);
+                pointPath.Insert(0, currentNode.transform.position);
+            }
+
+            navPath.SetPathPoints(nodePath.ToArray(), pointPath.ToArray()); // finished!!
             NavUtil.PluckNode(targetNode);
             return;
         }

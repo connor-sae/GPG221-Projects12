@@ -23,4 +23,8 @@ public class NavNodeEditor : Editor
     }
 }
 
+
+[CustomEditor(typeof(VisualisedNavNode))]
+public class VisualisedNavNodeEditor : NavNodeEditor {}
+
 }

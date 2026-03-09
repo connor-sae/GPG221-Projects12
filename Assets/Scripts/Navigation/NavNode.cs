@@ -7,12 +7,12 @@ using UnityEngine;
 [RequireComponent(typeof(NavNodeDeleteCatcher))]
 public class NavNode : MonoBehaviour
 {
-    public bool obstructed { get; private set; }
+    public bool obstructed;// { get; private set; }
     
     public float obstructionRadius;
     public float pathObstructionFactor = 0.8f;
     public LayerMask obstructionMask;
-    [HideInInspector] public NavNode lastNode;
+    //[HideInInspector] public NavNode lastNode;
     private int solveID = -1;
 
     public float h_cost; // hueristic
@@ -50,16 +50,18 @@ public class NavNode : MonoBehaviour
     /// </summary>
     /// <returns>returns true if the newly generated value is shorter and therefor updated</returns>
     /// <param name="navTarget">The ID of the solve call used to determine whether values must be regenerated (cannot be negative)</param>
-    public bool GenerateCost(Vector3 fromNodePos, float base_g_cost, Vector3 navTarget, int solveCallID, NavNode previousLink = null)
+    public virtual bool GenerateCost(Vector3 fromNodePos, float base_g_cost, Vector3 navTarget, int solveCallID, NavNode previousLink = null)
     {  
         float new_g_cost = Vector3.Distance(fromNodePos, transform.position) + base_g_cost;
         
         if(solveID != solveCallID) // new path solver being called!! must be regenreated
         {
+            solveID = solveCallID;
+            
             g_cost = new_g_cost;
             h_cost = Vector3.Distance(navTarget, transform.position);
 
-            lastNode = previousLink;
+            previousNode = previousLink;
             return true;
         }
 
@@ -67,7 +69,7 @@ public class NavNode : MonoBehaviour
         {
             g_cost = new_g_cost;
 
-            lastNode = previousLink;
+            previousNode = previousLink;
             return true;
         }
         return false;
@@ -84,7 +86,7 @@ public class NavNode : MonoBehaviour
         return GenerateCost(fromNode.transform.position, fromNode.g_cost, navTarget, solveCallID, fromNode);
     }
 
-    public void UpdateBounds()
+    public virtual void UpdateBounds()
     {
         obstructed = Physics.OverlapSphere(transform.position, obstructionRadius, obstructionMask).Length > 0;
     }

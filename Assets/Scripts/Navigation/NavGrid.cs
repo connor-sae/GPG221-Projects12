@@ -15,6 +15,7 @@ namespace GPG221.AI
         [SerializeField] private bool allowDiagonals = true;
         [SerializeField] private LayerMask obstructionMask;
         [SerializeField] private bool destroyObstructed;
+        [SerializeField] private NavNode usePrefab;
 
         private NavNode[,] nodes;
         List<NavNode> linearNodes;
@@ -44,6 +45,18 @@ namespace GPG221.AI
             NavUtil.activeSolver.DeRegisterNavNodes(childNodes.ToArray());
         }
 
+        private NavNode CreateNavNode(string name)
+        {
+            if(usePrefab == null)
+                return new GameObject(name, typeof(NavNode)).GetComponent<NavNode>();
+            else
+            {
+                GameObject obj = Instantiate(usePrefab.gameObject);
+                obj.name = name;
+                return obj.GetComponent<NavNode>();
+            }
+        }
+
         private void GenerateNewNodes()
         {
             nodes = new NavNode[gridResolution.x, gridResolution.y];
@@ -64,7 +77,7 @@ namespace GPG221.AI
                 for (int y = 0; y < gridResolution.y; y++)
                 {
                     // Create new Nav Nodes
-                    NavNode node = new GameObject($"Nav Node ({x}, {y})", typeof(NavNode)).GetComponent<NavNode>();
+                    NavNode node = CreateNavNode($"Nav Node ({x}, {y})");
                     node.transform.parent = transform;
 
                     //set position

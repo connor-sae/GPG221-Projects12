@@ -17,10 +17,14 @@ namespace GPG221.AI.Solvers
 
             }else
                 Destroy(gameObject);
+            
+            Debug.Log(navNodes.Length);
         }
         [Tooltip("The Threshold for connecting neighboring nodes to the target / origin position")]
         // should roughly equal 0.75 the distance between any 2 nodes
-        public float targetGridStitchThreshold = 2f;
+        [SerializeField] protected float targetGridStitchThreshold = 2f;
+        [SerializeField] protected float originGridStitchThreshold = 1f;
+        [SerializeField] protected bool excludeFirstNode = true;
         [SerializeField] public NavNode[] navNodes;
 
         
@@ -34,6 +38,7 @@ namespace GPG221.AI.Solvers
         public void ReRegisterAllNavNodes()
         {
             navNodes = FindObjectsByType<NavNode>(FindObjectsSortMode.None);
+            Debug.Log("Reregistered");
         }
 
         public void DeRegisterNavNodes(NavNode[] removeNodes)
@@ -49,6 +54,7 @@ namespace GPG221.AI.Solvers
 
             navNodes = newNodes.ToArray();
             //OnDrawGizmos();
+            Debug.Log("Deregistered nodes");
         }
 
 
@@ -64,6 +70,7 @@ namespace GPG221.AI.Solvers
             }
             
             navNodes = newNodes.ToArray();
+            Debug.Log("Registerd new nodes");
         }
 
         public bool IsActive()

@@ -1,26 +1,33 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-[System.Serializable]
-public class NavPath
+namespace GPG221.AI
 {
-    public PathStatus status {get; private set;}
-    public Vector3[] points;
-
-    public NavPath()
+    
+    [System.Serializable]
+    public class NavPath
     {
-        status = PathStatus.UNSOLVED;
-    }
+        public PathStatus status {get; private set;}
+        public Vector3[] points;
+        public NavNode[] nodes;
 
-    public void SetPathPoints(Vector3[] pathPoints)
-    {
-        status = PathStatus.SOLVED;
-        points = pathPoints;
-    }
+        public NavPath()
+        {
+            status = PathStatus.UNSOLVED;
+        }
 
-    public void Fail(string failReason)
-    {
-        status = PathStatus.FAILED;
-        Debug.Log("Path generation failed: ");
+        public void SetPathPoints(NavNode[] pathNodes, Vector3[] pathPoints)
+        {
+            status = PathStatus.SOLVED;
+            nodes = pathNodes;
+            points = pathPoints;
+        }
+
+        public void Fail(string failReason)
+        {
+            status = PathStatus.FAILED;
+            Debug.Log("Path generation failed: " + failReason);
+        }
     }
 }
 
