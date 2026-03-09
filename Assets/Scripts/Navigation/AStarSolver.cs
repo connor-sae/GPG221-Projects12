@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace GPG221.AI.Solvers
@@ -134,10 +136,33 @@ namespace GPG221.AI.Solvers
             list.Add(node);
         }
 
+        public float GenerateHueristic(Vector3 a, Vector3 b)
+        {
+            switch (hueristicSolver)
+            {
+                case HueristicType.EUCLIDEAN:
+                    return Vector3.Distance(a, b);
+
+                case HueristicType.MANHATTAN:
+                    return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) + Mathf.Abs(a.z - b.z);
+
+                default: return Mathf.Infinity;
+            }
+        }
+
     }
 
     public enum HueristicType
     {
-        MANHATTAN,
+        /// <summary>
+        /// direct 3D distance between the points (expensive)
+        /// </summary>
+        EUCLIDEAN,
+        /// <summary>
+        /// Un-Normalised distance between points (cheap)
+        /// </summary>
+        MANHATTAN
     }
+
+    
 }

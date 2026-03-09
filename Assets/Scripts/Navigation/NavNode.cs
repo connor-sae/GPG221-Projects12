@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using GPG221.AI;
+using GPG221.AI.Solvers;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -57,9 +58,9 @@ public class NavNode : MonoBehaviour
         if(solveID != solveCallID) // new path solver being called!! must be regenreated
         {
             solveID = solveCallID;
-            
+
             g_cost = new_g_cost;
-            h_cost = Vector3.Distance(navTarget, transform.position);
+            h_cost = (NavUtil.activeSolver as AStarSolver).GenerateHueristic(navTarget, transform.position);
 
             previousNode = previousLink;
             return true;
