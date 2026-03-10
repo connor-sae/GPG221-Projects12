@@ -22,7 +22,11 @@ namespace GPG221.AI
             foreach (NavNode node in closedNodes)
             {
                 if(node is VisualisedNavNode)
+                {
                     (node as VisualisedNavNode).UpdateCostVisuals(true);
+                    if(Vector3.Distance(target, node.transform.position) < 0.3f)
+                        (node as VisualisedNavNode).image.color = Color.blue;
+                }
             }
             foreach(NavNode node in navPath.nodes)
             {

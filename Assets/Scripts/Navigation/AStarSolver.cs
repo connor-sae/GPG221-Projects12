@@ -149,6 +149,14 @@ namespace GPG221.AI.Solvers
                 default: return Mathf.Infinity;
             }
         }
+        /// <summary>
+        /// Sets the Active Heuristic
+        /// </summary>
+        /// <param name="heuristic">0 - Eucliean \n 1 - Manhattan</param>
+        public void SetHeuristicSolver(Int32 heuristic)
+        {
+            hueristicSolver = (HueristicType)heuristic;
+        }
 
     }
 

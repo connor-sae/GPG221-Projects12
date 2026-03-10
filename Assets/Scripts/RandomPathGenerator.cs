@@ -4,7 +4,7 @@ using UnityEngine;
 public class RandomPathGenerator : MonoBehaviour
 {
 
-    [SerializeField] private PathSO pathReference;
+    [SerializeField] public FollowPath pather;
     [SerializeField] private Transform startPoint;
 
     void Start()
@@ -21,6 +21,6 @@ public class RandomPathGenerator : MonoBehaviour
 
         NavUtil.activeSolver.GeneratePath(startPoint.position, randomNode.transform.position, out NavPath path);
 
-        pathReference.Set(path);
+        pather.SetPath(path);
     }
 }
