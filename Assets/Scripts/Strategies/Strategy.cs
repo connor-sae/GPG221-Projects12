@@ -9,10 +9,15 @@ namespace GPG221.AI
         
 
         [System.Serializable]
-        public class Action
+        public class State
         {
             public WeightedBehavior[] actionBehaviours;
-            public UnityAction onActionStart;
+
+            public virtual void OnStateEnter(){}
+
+            public virtual void OnStateExit(){}
+
+            public virtual void OnStateContinue(){}
         }
     }
 

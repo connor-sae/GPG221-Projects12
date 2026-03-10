@@ -34,7 +34,7 @@ public class NavSolverEditor : Editor
 public class AStarSolverEditor : NavSolverEditor {}
 
 [CustomEditor(typeof(AStarVisualiser))]
-public class AStarVisualiser : AStarSolver {}
+public class AStarVisualiserEditor : AStarSolverEditor {}
 
 }
 

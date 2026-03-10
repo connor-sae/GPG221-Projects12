@@ -1,3 +1,4 @@
+using System;
 using GPG221.AI;
 using UnityEngine;
 
@@ -14,18 +15,26 @@ public class FollowPath : Behavior, IPather
         return path;
     }
 
-    public void SetPath(NavPath path)
+    Action pathCompleteCallback;
+    public void SetPath(NavPath path, Action pathCompleteCallback)
     {
         this.path = path;
         targetPoint = 0;
+        this.pathCompleteCallback = pathCompleteCallback;
     }
+
+
 
     private void FixedUpdate() 
     {
+        if(path == null) return;
         // at target point
         if(Vector3.Distance(path.points[targetPoint], transform.position) < pointPassThreshold)
         {
-            if(targetPoint < path.points.Length - 1) //not the last point
+            if(targetPoint >= path.points.Length - 1) //the last point
+            {
+                pathCompleteCallback();
+            }else
                 targetPoint++; //target next point
         }
 
