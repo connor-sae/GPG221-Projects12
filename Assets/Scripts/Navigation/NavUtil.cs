@@ -1,8 +1,6 @@
 using UnityEngine;
 using GPG221.AI.Solvers;
-using UnityEditor.Experimental.GraphView;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 namespace GPG221.AI
 {

@@ -34,13 +34,12 @@ public class Cohesion : Behavior
 
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
-        if(Selection.Contains(gameObject))
-            if(sense != null && sense.visibleVehicles.Length > 0)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawWireSphere(targetPos, 0.4f);
-            }
+        if(sense != null && sense.visibleVehicles.Length > 0)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(targetPos, 0.4f);
+        }
     }
 }

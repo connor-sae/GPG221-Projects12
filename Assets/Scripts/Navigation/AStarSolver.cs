@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace GPG221.AI.Solvers

@@ -1,5 +1,4 @@
 using GPG221.AI;
-using GPG221.AI.Solvers;
 using UnityEngine;
 
 public class GizmoNavAgent : MonoBehaviour

@@ -81,6 +81,7 @@ namespace GPG221.AI.Solvers
         [SerializeField] private bool visualizeNodePaths;
         [SerializeField] private bool usePathWidth;
         [SerializeField] private bool visualizeNodeRadius;
+        #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if(IsActive()  && navNodes != null)
@@ -134,6 +135,8 @@ namespace GPG221.AI.Solvers
             }
 
         }
+
+        #endif
 
 
         #endregion

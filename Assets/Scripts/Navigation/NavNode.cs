@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using GPG221.AI;
 using GPG221.AI.Solvers;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent(typeof(NavNodeDeleteCatcher))]

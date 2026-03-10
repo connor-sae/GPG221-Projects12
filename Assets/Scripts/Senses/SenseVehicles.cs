@@ -47,37 +47,34 @@ public class SenseVehicles : MonoBehaviour
         return nearbyVehicles.ToArray();
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmosSelected()
     {
 
-        if(Selection.Contains(gameObject))
+        Gizmos.color = Color.yellow;
+
+        //Gizmos.DrawWireSphere(transform.position, senseRadius);
+
+        Vector3 forward = GetComponent<Vehicle>().forward;
+
+        Vector3 lastPos = transform.position;
+
+        for(int i = - gizmoResolution; i <= gizmoResolution ; i++)
         {
-            
-            Gizmos.color = Color.yellow;
-
-            //Gizmos.DrawWireSphere(transform.position, senseRadius);
-
-            Vector3 forward = GetComponent<Vehicle>().forward;
-
-            Vector3 lastPos = transform.position;
-
-            for(int i = - gizmoResolution; i <= gizmoResolution ; i++)
-            {
-                float angle = (float)i / gizmoResolution * senseAngle;
-                Vector3 pos = transform.position + AngleToVec(angle, forward) * senseRadius;
-                Gizmos.DrawLine(lastPos, pos);
-                lastPos = pos;
-            }
-
-            Gizmos.DrawLine(lastPos, transform.position);
-
-        
-            Gizmos.color = Color.green;
-            foreach(Vehicle v in visibleVehicles)
-            {
-                Gizmos.DrawLine(transform.position, v.position);
-            }
+            float angle = (float)i / gizmoResolution * senseAngle;
+            Vector3 pos = transform.position + AngleToVec(angle, forward) * senseRadius;
+            Gizmos.DrawLine(lastPos, pos);
+            lastPos = pos;
         }
+
+        Gizmos.DrawLine(lastPos, transform.position);
+
+    
+        Gizmos.color = Color.green;
+        foreach(Vehicle v in visibleVehicles)
+        {
+            Gizmos.DrawLine(transform.position, v.position);
+        }
+        
     }
 
     private Vector3 AngleToVec(float angle, Vector3 forward)
