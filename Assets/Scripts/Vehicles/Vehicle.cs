@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -111,4 +110,10 @@ public class WeightedBehavior
     public Behavior behavior;
     [Range(0, 1f)]
     public float weight;
+
+    public WeightedBehavior(Behavior behaviour, float weight)
+    {
+        this.behavior = behaviour;
+        this.weight = weight;
+    }
 }
