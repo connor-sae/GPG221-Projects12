@@ -50,12 +50,12 @@ public class Vehicle : MonoBehaviour
 
     private Rigidbody rb;
 
-    void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         forward = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
         forward.Normalize();
@@ -65,6 +65,7 @@ public class Vehicle : MonoBehaviour
     {
 
         acceleration = GetWeightedSteer();
+
         if(acceleration.magnitude > maxAccel) acceleration = acceleration.normalized * maxAccel; // remap to maxAccel
 
         //set forward before rb velocity modified
@@ -80,6 +81,7 @@ public class Vehicle : MonoBehaviour
         if (velocity.magnitude > maxSpeed)
             velocity = velocity.normalized * maxSpeed;
 
+
         //translate position by velocity
         //position += velocity * Time.fixedDeltaTime;
         //handled by rigidbody
@@ -93,7 +95,7 @@ public class Vehicle : MonoBehaviour
     {
         Vector3 steer = Vector3.zero;
         foreach(WeightedBehavior wb in behaviors)
-        {            
+        {
             steer += wb.behavior.steer * wb.weight * maxAccel; // steer proporionate to maxAccel
             //reset behaviour steer to prevent ghost steering
             wb.behavior.ClearSteer();

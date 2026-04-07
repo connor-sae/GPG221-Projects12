@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using GPG221.AI;
 using UnityEngine;
 
@@ -24,16 +25,16 @@ public class FollowPath : Behavior, IPather
     }
 
 
-
     private void FixedUpdate() 
     {
-        if(path == null) return;
+        if(path == null || path.points == null) return;
         // at target point
         if(Vector3.Distance(path.points[targetPoint], transform.position) < pointPassThreshold)
         {
             if(targetPoint >= path.points.Length - 1) //the last point
             {
-                pathCompleteCallback();
+                pathCompleteCallback?.Invoke();
+                pathCompleteCallback = null;  // prevents callback being spammed
             }else
                 targetPoint++; //target next point
         }
@@ -42,6 +43,18 @@ public class FollowPath : Behavior, IPather
         Vector3 desiredVel = (path.points[targetPoint]- transform.position).normalized * vehicle.maxSpeed;
         Vector3 steerForce = desiredVel  - vehicle.velocity;
         Steer(steerForce);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if(path == null || path.status != PathStatus.SOLVED) 
+            return;
+        Gizmos.color = Color.blue;
+        for(int i = 0; i < path.points.Length - 1; i++)
+        {
+            Gizmos.DrawLine(path.points[i], path.points[i+1]);
+        }
+        Gizmos.DrawSphere(path.points[targetPoint], 0.2f);
     }
 
 }

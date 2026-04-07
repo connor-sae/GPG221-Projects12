@@ -41,6 +41,7 @@ public class VehicleStator : MonoBehaviour
         }
         vehicle.behaviors = newBehaviours.ToArray();
     }
+
 }
 
 [System.Serializable]

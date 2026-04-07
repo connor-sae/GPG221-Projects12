@@ -162,6 +162,11 @@ namespace GPG221.AI
             return nearNode;
         }
 
+        public static NavNode GetRandomNode()
+        {
+            return activeSolver.navNodes[Random.Range(0, activeSolver.navNodes.Length)];
+        }
+
         public static void SetActiveSolver(NavSolver solver)
         {
             NavSolver.instance = solver;

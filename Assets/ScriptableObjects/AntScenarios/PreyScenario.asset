@@ -13,7 +13,153 @@ MonoBehaviour:
   m_Name: PreyScenario
   m_EditorClassIdentifier: 
   conditions:
-    list: []
-  actions: []
-  goals: []
-  worldStates: []
+    list:
+    - id: 0
+      name: hungry
+    - id: 1
+      name: mature
+    - id: 2
+      name: seeMate
+    - id: 3
+      name: nearMate
+    - id: 4
+      name: seePreditor
+    - id: 5
+      name: Bred
+    - id: 6
+      name: SeeFood
+    - id: 7
+      name: starving
+  actions:
+  - name: SearchForFood
+    isDefault: 1
+    state: {fileID: 2123729783464745996, guid: 08203bc456089132989153963e5bb31b, type: 3}
+    cost: 1
+    position: {x: 482.92322, y: 61.390457}
+    pre:
+    - id: 0
+      value: 1
+    - id: 6
+      value: 0
+    post:
+    - id: 6
+      value: 1
+  - name: SearchForMate
+    isDefault: 0
+    state: {fileID: 2123729783464745996, guid: fdc2f70340e17c8048efe12a3ffe85ab, type: 3}
+    cost: 1
+    position: {x: 281.65997, y: 62.48327}
+    pre:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 1
+    - id: 3
+      value: 0
+    - id: 2
+      value: 0
+    post:
+    - id: 2
+      value: 1
+  - name: FleePreditor
+    isDefault: 0
+    state: {fileID: 2123729783464745996, guid: 697c2c9c7094d25b8b92135efd003fbd, type: 3}
+    cost: -1
+    position: {x: 985.81006, y: 77.208824}
+    pre:
+    - id: 4
+      value: 1
+    post:
+    - id: 4
+      value: 0
+  - name: Breed
+    isDefault: 0
+    state: {fileID: 2123729783464745996, guid: fa7bb60d056bb6ae0901bd249ac3fd42, type: 3}
+    cost: 0
+    position: {x: 499.3977, y: 347.43637}
+    pre:
+    - id: 1
+      value: 1
+    - id: 0
+      value: 0
+    - id: 3
+      value: 1
+    post:
+    - id: 5
+      value: 1
+  - name: GoToMate
+    isDefault: 0
+    state: {fileID: 2123729783464745996, guid: f8a797c407a99fb0eae2a07a69122ab7, type: 3}
+    cost: 0
+    position: {x: 278.98254, y: 345.14053}
+    pre:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 1
+    - id: 2
+      value: 1
+    - id: 3
+      value: 0
+    post:
+    - id: 3
+      value: 1
+  - name: GoToFood
+    isDefault: 0
+    state: {fileID: 2123729783464745996, guid: e01b3cede590489d889b7925f2d0a883, type: 3}
+    cost: 0
+    position: {x: 708.4881, y: 62.91469}
+    pre:
+    - id: 0
+      value: 1
+    - id: 6
+      value: 1
+    post:
+    - id: 0
+      value: 0
+  - name: DesperatlyGoToFood
+    isDefault: 0
+    state: {fileID: 2123729783464745996, guid: e01b3cede590489d889b7925f2d0a883, type: 3}
+    cost: -2
+    position: {x: 713.33325, y: 353}
+    pre:
+    - id: 7
+      value: 1
+    post:
+    - id: 7
+      value: 0
+  goals:
+  - name: Multiply
+    isDefault: 1
+    position: {x: 268.62915, y: 671.05896}
+    conditions:
+    - id: 5
+      value: 1
+  - name: Survive
+    isDefault: 0
+    position: {x: 1001.7345, y: 395.61185}
+    conditions:
+    - id: 4
+      value: 0
+    - id: 0
+      value: 0
+  worldStates:
+  - position: {x: 542.7536, y: 642.04553}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 1
+    - id: 2
+      value: 0
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0
+    - id: 5
+      value: 0
+    - id: 6
+      value: 0
+    - id: 7
+      value: 1
