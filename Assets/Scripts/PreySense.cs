@@ -49,7 +49,14 @@ public class PreySense : MonoBehaviour, ISense
     
     bool SeePreditor()
     {
-        return viewCone.GetByTag("Preditor").Length > 0; // TODO: insert preditor only script
+        Collider[] nearbyPreditors = viewCone.GetByTag("Preditor");
+        
+        foreach(Collider col in nearbyPreditors)
+        {
+            //if(col.GetComponent<SurvivalAgent>().IsMature()) // Preditors mature enough to pose a threat?
+                return true;
+        }
+        return false;
     }
 
     bool SeeFood()

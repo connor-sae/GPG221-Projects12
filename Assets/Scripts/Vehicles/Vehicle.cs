@@ -81,7 +81,6 @@ public class Vehicle : MonoBehaviour
         if (velocity.magnitude > maxSpeed)
             velocity = velocity.normalized * maxSpeed;
 
-
         //translate position by velocity
         //position += velocity * Time.fixedDeltaTime;
         //handled by rigidbody

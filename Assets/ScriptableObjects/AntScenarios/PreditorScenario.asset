@@ -25,11 +25,11 @@ MonoBehaviour:
     - id: 4
       name: seePrey
     - id: 5
-      name: Bred
+      name: bred
   actions:
   - name: SearchForPrey
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2123729783464745996, guid: 78cd1c62ca47c6a1eb36e0ee6926ab8b, type: 3}
     cost: 1
     position: {x: 545.7194, y: 76.7933}
     pre:
@@ -38,11 +38,11 @@ MonoBehaviour:
     - id: 4
       value: 0
     post:
-    - id: 0
-      value: 0
+    - id: 4
+      value: 1
   - name: SearchForMate
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2123729783464745996, guid: 66a96e011f241babcba0a7a96cc279b0, type: 3}
     cost: 1
     position: {x: 281.65997, y: 62.48327}
     pre:
@@ -57,20 +57,9 @@ MonoBehaviour:
     post:
     - id: 2
       value: 1
-  - name: FleePreditor
-    isDefault: 0
-    state: {fileID: 0}
-    cost: -1
-    position: {x: 985.81006, y: 77.208824}
-    pre:
-    - id: 4
-      value: 1
-    post:
-    - id: 4
-      value: 0
   - name: Breed
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2123729783464745996, guid: 4769fef37cd79155488e77942e26b448, type: 3}
     cost: 0
     position: {x: 549.3977, y: 335.7697}
     pre:
@@ -85,7 +74,7 @@ MonoBehaviour:
       value: 1
   - name: GoToMate
     isDefault: 0
-    state: {fileID: 0}
+    state: {fileID: 2123729783464745996, guid: f8a797c407a99fb0eae2a07a69122ab7, type: 3}
     cost: 0
     position: {x: 278.98254, y: 345.14053}
     pre:
@@ -100,6 +89,28 @@ MonoBehaviour:
     post:
     - id: 3
       value: 1
+  - name: Wander
+    isDefault: 1
+    state: {fileID: 2123729783464745996, guid: e5ac15483ae4f6b2da186b9f70e02461, type: 3}
+    cost: -1
+    position: {x: 981.38214, y: 110.98448}
+    pre:
+    - id: 1
+      value: 0
+    post:
+    - id: 1
+      value: 1
+  - name: HuntPrey
+    isDefault: 0
+    state: {fileID: 2123729783464745996, guid: c1014d0d2a4dc0d079c57cf36f546cad, type: 3}
+    cost: 0
+    position: {x: 764.9795, y: 91.55951}
+    pre:
+    - id: 4
+      value: 1
+    post:
+    - id: 0
+      value: 0
   goals:
   - name: Multiply
     isDefault: 1
@@ -116,13 +127,13 @@ MonoBehaviour:
     - id: 0
       value: 0
   worldStates:
-  - position: {x: 542.7536, y: 642.04553}
+  - position: {x: 623.1899, y: 609.6862}
     isAutoUpdate: 1
     list:
     - id: 0
       value: 1
     - id: 1
-      value: 0
+      value: 1
     - id: 2
       value: 0
     - id: 3

@@ -109,7 +109,7 @@ namespace GPG221.AI
                     nodes.Add(node);
                 }
             }
-
+        
             return nodes.ToArray();
         }
 

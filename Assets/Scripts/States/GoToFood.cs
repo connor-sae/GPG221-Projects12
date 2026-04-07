@@ -20,7 +20,10 @@ public class GoToFood : VehicleState
         Collider[] visibleFood = viewCone.GetByTag("Food");
 
         if(visibleFood.Length <= 0)
+        {
             Debug.LogWarning("Lost food in transition");
+            Finish();
+        }
         else
         {
             targetFood = visibleFood[0].transform;

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7737563171285400062}
-  - component: {fileID: -3127668857240986059}
+  - component: {fileID: 9079044965614541084}
   m_Layer: 0
-  m_Name: FleePreditor
+  m_Name: BreedPreditor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3127668857240986059
+--- !u!114 &9079044965614541084
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2123729783464745996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4fb1d7b8e1509d1a5d12001b4444a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e9656ac8707214cab7929c1b0ce4161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateBehaviours:
-  - name: FleeNearbyPreditors
-    weight: 1
-  pathUpdateInterval: 1
+  stateBehaviours: []
+  pathUpdateInterval: 100
+  breedHungerCost: 0.3
+  childPrefab: {fileID: 4963252242620798795, guid: 9b1ef1ddcff2fb2c2a870f7a5140d7be, type: 3}
