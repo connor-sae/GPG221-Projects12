@@ -9,8 +9,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7822535575887338790, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
+      propertyPath: hunger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7822535575887338790, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
       propertyPath: mateTag
       value: Preditor
+      objectReference: {fileID: 0}
+    - target: {fileID: -7822535575887338790, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
+      propertyPath: maxAccel
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -7822535575887338790, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
+      propertyPath: maxSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -7822535575887338790, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
+      propertyPath: maturationRate
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -7822535575887338790, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
+      propertyPath: hungerRuductionRate
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 1459165977640685884, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
       propertyPath: m_Name
@@ -65,12 +85,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 6245c182d7db7dc4bb2cbea88029fec8, type: 2}
     - target: {fileID: 6517197479363769958, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
+      propertyPath: useLOS
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517197479363769958, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
       propertyPath: senseAngle
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6517197479363769958, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
       propertyPath: senseRadius
-      value: 35
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517197479363769958, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
+      propertyPath: obstructionMask.m_Bits
+      value: 33217
       objectReference: {fileID: 0}
     - target: {fileID: 7453452226398668373, guid: f0d2b2bf4a45e5428aec684b8a62e291, type: 3}
       propertyPath: scenario

@@ -17,7 +17,7 @@ public class GoToFood : VehicleState
     {
         base.Enter();
 
-        Collider[] visibleFood = viewCone.GetByTag("Food");
+        Collider[] visibleFood = viewCone.GetByTag(foodTag);
 
         if(visibleFood.Length <= 0)
         {

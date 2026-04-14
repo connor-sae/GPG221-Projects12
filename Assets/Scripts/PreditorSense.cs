@@ -19,7 +19,6 @@ public class PreditorSense : MonoBehaviour, ISense
         aWorldState.Set(PreditorSenseEnum.nearMate, NearMate());
         aWorldState.Set(PreditorSenseEnum.seeMate, SeeMate());
         aWorldState.Set(PreditorSenseEnum.seePrey, SeePrey());
-        Debug.Log(SeePrey());
     }
 
     #region Conditions

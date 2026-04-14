@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent(typeof(ViewConeSense))]
@@ -17,7 +16,7 @@ public class FleeNearbyPreditors : Behavior
         if(nearbyPreditors.Length <= 0)
             return;
         
-        
+
         Vector3 desiredVel = Vector3.zero;
         foreach(Collider col in nearbyPreditors)
         {
