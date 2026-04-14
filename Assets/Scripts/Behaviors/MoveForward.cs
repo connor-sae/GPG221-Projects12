@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-[RequireComponent(typeof(Vehicle))]
-public class MoveForward : Behavior
+namespace Westhouse.GPG221.AI.Agent
 {
-    //public float speed = 1f;
 
-    void Update()
+    [RequireComponent(typeof(Vehicle))]
+    public class MoveForward : Behavior
     {
-        Steer(vehicle.forward * vehicle.maxSpeed);
+        //public float speed = 1f;
+
+        void Update()
+        {
+            Steer(vehicle.forward * vehicle.maxSpeed);
+        }
     }
 }

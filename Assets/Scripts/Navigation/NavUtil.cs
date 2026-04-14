@@ -1,8 +1,7 @@
 using UnityEngine;
-using GPG221.AI.Solvers;
 using System.Collections.Generic;
 
-namespace GPG221.AI
+namespace Westhouse.GPG221.AI.Navigation
 {
 
     public static class NavUtil

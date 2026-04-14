@@ -1,5 +1,6 @@
-using GPG221.AI;
+using Westhouse.GPG221.AI.Navigation;
 using UnityEngine;
+
 
 public class GizmoNavAgent : MonoBehaviour
 {

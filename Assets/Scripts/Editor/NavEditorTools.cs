@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEditor;
+using Westhouse.GPG221.AI.Navigation;
 
-namespace GPG221.AI.Editors
+namespace Wesyhouse.GPG221.AI.Editors
 {
 public class NavEditorTools  
 

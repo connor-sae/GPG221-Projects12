@@ -1,60 +1,62 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
+using Westhouse.GPG221.AI.Agent;
 
-[RequireComponent(typeof(Vehicle))]
-public class VehicleStator : MonoBehaviour
+namespace Westhouse.GPG221.AI
 {
-    Vehicle vehicle;
-
-    void Awake()
+    [RequireComponent(typeof(Vehicle))]
+    public class VehicleStator : MonoBehaviour
     {
-        vehicle = GetComponent<Vehicle>();
-    }
+        Vehicle vehicle;
 
-    public List<BehaviourReference> behaviourReferences;
-
-    public void SetStateBehaviours(StateBehaviour[] stateBehaviours)
-    {
-        List<WeightedBehavior> newBehaviours = new();
-        foreach(StateBehaviour SB in stateBehaviours)
+        void Awake()
         {
-            BehaviourReference reference = null;
-            foreach(BehaviourReference BR in behaviourReferences) // ensure it exists
-            {
-                if(BR.name == SB.name) // it Exists!!
-                {
-                    reference = BR;
-                    break;
-                }
-            }
-
-            if(reference == null)
-            {
-                Debug.LogError($"The Requested state Behaviour {SB.name} Does not exist in Behaviour references!");
-                continue;
-            }
-
-            WeightedBehavior WB = new WeightedBehavior(reference.behaviour, SB.weight);
-            newBehaviours.Add(WB);
+            vehicle = GetComponent<Vehicle>();
         }
-        vehicle.behaviors = newBehaviours.ToArray();
+
+        public List<BehaviourReference> behaviourReferences;
+
+        public void SetStateBehaviours(StateBehaviour[] stateBehaviours)
+        {
+            List<WeightedBehavior> newBehaviours = new();
+            foreach(StateBehaviour SB in stateBehaviours)
+            {
+                BehaviourReference reference = null;
+                foreach(BehaviourReference BR in behaviourReferences) // ensure it exists
+                {
+                    if(BR.name == SB.name) // it Exists!!
+                    {
+                        reference = BR;
+                        break;
+                    }
+                }
+
+                if(reference == null)
+                {
+                    Debug.LogError($"The Requested state Behaviour {SB.name} Does not exist in Behaviour references!");
+                    continue;
+                }
+
+                WeightedBehavior WB = new WeightedBehavior(reference.behaviour, SB.weight);
+                newBehaviours.Add(WB);
+            }
+            vehicle.behaviors = newBehaviours.ToArray();
+        }
+
     }
 
-}
+    [System.Serializable]
+    public class StateBehaviour
+    {
+        public string name;
+        [Range(0, 1)]
+        public float weight;
+    }
 
-[System.Serializable]
-public class StateBehaviour
-{
-    public string name;
-    [Range(0, 1)]
-    public float weight;
-}
-
-[System.Serializable]
-public class BehaviourReference
-{
-    public string name;
-    public Behavior behaviour;
+    [System.Serializable]
+    public class BehaviourReference
+    {
+        public string name;
+        public Behavior behaviour;
+    }
 }

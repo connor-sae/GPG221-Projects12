@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GPG221.AI
+namespace Westhouse.GPG221.AI.Navigation
 {
 
     [RequireComponent(typeof(BoxCollider))]

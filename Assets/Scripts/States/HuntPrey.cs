@@ -1,59 +1,63 @@
 using UnityEngine;
+using Westhouse.GPG221.AI.Agent;
 
-public class HuntPrey : VehicleState
+namespace Westhouse.GPG221.AI.Strategy
 {
-    [SerializeField] private string PreyTag = "Prey";
-    [SerializeField] private float saturation = 0.5f;
-    [SerializeField] private float consumeDistance = 1.5f;
-    private ViewConeSense viewCone;
-    private Transform targetPrey;
-
-    public override void Create(GameObject aGameObject)
+    public class HuntPrey : VehicleState
     {
-        base.Create(aGameObject);
-        viewCone = vehicle.GetComponent<ViewConeSense>();
-    }
-    public override void Enter()
-    {
-        base.Enter();
+        [SerializeField] private string PreyTag = "Prey";
+        [SerializeField] private float saturation = 0.5f;
+        [SerializeField] private float consumeDistance = 1.5f;
+        private ViewConeSense viewCone;
+        private Transform targetPrey;
 
-        Collider[] visiblePrey = viewCone.GetByTag(PreyTag);
-
-        if(visiblePrey.Length <= 0)
+        public override void Create(GameObject aGameObject)
         {
-            Debug.LogWarning("Lost food in transition");
-            Finish();
+            base.Create(aGameObject);
+            viewCone = vehicle.GetComponent<ViewConeSense>();
         }
-        else
+        public override void Enter()
         {
-            targetPrey = visiblePrey[0].transform;
-            GoTo(targetPrey);
-        }
-    }
+            base.Enter();
 
-    public override void Execute(float aDeltaTime, float aTimeScale)
-    {
-        base.Execute(aDeltaTime, aTimeScale);
-        if(targetPrey == null) // lost prey
-        {
-            Finish();
-            return;
-        }
+            Collider[] visiblePrey = viewCone.GetByTag(PreyTag);
 
-        if(Vector3.Distance(targetPrey.position , vehicle.position) < consumeDistance) // Can Eat
-        {
-            if(vehicle is SurvivalAgent)
+            if(visiblePrey.Length <= 0)
             {
-                (vehicle as SurvivalAgent).hunger += saturation;
+                Debug.LogWarning("Lost food in transition");
+                Finish();
             }
             else
-                Debug.LogError("Vehicle is not Survival agent!!!");
-            
+            {
+                targetPrey = visiblePrey[0].transform;
+                GoTo(targetPrey);
+            }
+        }
 
-            Object.Destroy(targetPrey.gameObject);
-            Finish();
+        public override void Execute(float aDeltaTime, float aTimeScale)
+        {
+            base.Execute(aDeltaTime, aTimeScale);
+            if(targetPrey == null) // lost prey
+            {
+                Finish();
+                return;
+            }
+
+            if(Vector3.Distance(targetPrey.position , vehicle.position) < consumeDistance) // Can Eat
+            {
+                if(vehicle is SurvivalAgent)
+                {
+                    (vehicle as SurvivalAgent).hunger += saturation;
+                }
+                else
+                    Debug.LogError("Vehicle is not Survival agent!!!");
+                
+
+                Object.Destroy(targetPrey.gameObject);
+                Finish();
+            }
+
         }
 
     }
-
 }

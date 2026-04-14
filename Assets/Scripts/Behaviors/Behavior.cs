@@ -1,26 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-[RequireComponent(typeof(Vehicle))]
-public class Behavior : MonoBehaviour
+namespace Westhouse.GPG221.AI.Agent
 {
-    protected Vehicle vehicle;
-    public Vector3 steer {get; private set;}
 
-    protected virtual void Awake()
+    [RequireComponent(typeof(Vehicle))]
+    public class Behavior : MonoBehaviour
     {
-        vehicle = GetComponent<Vehicle>();
-    }
+        protected Vehicle vehicle;
+        public Vector3 steer {get; private set;}
 
-    protected virtual void Steer(Vector3 steerForce)
-    {
-        steer = steerForce;
-    }
+        protected virtual void Awake()
+        {
+            vehicle = GetComponent<Vehicle>();
+        }
 
-    public void ClearSteer()
-    {
-        steer = Vector3.zero;
+        protected virtual void Steer(Vector3 steerForce)
+        {
+            steer = steerForce;
+        }
+
+        public void ClearSteer()
+        {
+            steer = Vector3.zero;
+        }
     }
 }

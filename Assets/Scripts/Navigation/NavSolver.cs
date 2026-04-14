@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace GPG221.AI.Solvers
+namespace Westhouse.GPG221.AI.Navigation
 {
 
     public class NavSolver : MonoBehaviour

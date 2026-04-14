@@ -1,27 +1,30 @@
 using System.IO;
 using UnityEngine;
 
-[RequireComponent(typeof(CameraScroller))]
-public class PatherScrollCoupler : MonoBehaviour
+namespace Westhouse.GPG221
 {
-    CameraScroller scroller;
-    int oldIndex;
-    [SerializeField] private GameObject[] pathers;
-    void Start()
+    [RequireComponent(typeof(CameraScroller))]
+    public class PatherScrollCoupler : MonoBehaviour
     {
-        scroller = GetComponent<CameraScroller>();
-        foreach(GameObject pather in pathers) pather.SetActive(false);
-        pathers[scroller.activeCamIndex].SetActive(true);
-    }
-    void Update()
-    {
-        if(scroller.activeCamIndex != oldIndex)
+        CameraScroller scroller;
+        int oldIndex;
+        [SerializeField] private GameObject[] pathers;
+        void Start()
         {
-            
-            pathers[oldIndex].SetActive(false);
+            scroller = GetComponent<CameraScroller>();
+            foreach(GameObject pather in pathers) pather.SetActive(false);
             pathers[scroller.activeCamIndex].SetActive(true);
+        }
+        void Update()
+        {
+            if(scroller.activeCamIndex != oldIndex)
+            {
+                
+                pathers[oldIndex].SetActive(false);
+                pathers[scroller.activeCamIndex].SetActive(true);
 
-            oldIndex = scroller.activeCamIndex;
+                oldIndex = scroller.activeCamIndex;
+            }
         }
     }
 }

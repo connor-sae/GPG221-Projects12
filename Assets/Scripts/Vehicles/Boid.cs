@@ -1,6 +1,8 @@
-using UnityEngine;
-
 // [RequireComponent(typeof(Avoidance))]
 // [RequireComponent(typeof(Alignment))]
 // [RequireComponent(typeof(Cohesion))]
-public class Boid : Agent {}
+
+namespace Westhouse.GPG221.AI.Agent
+{
+    public class Boid : Agent {}
+}

@@ -1,8 +1,8 @@
 using UnityEditor;
 using UnityEngine;
-using GPG221.AI.Solvers;
+using Westhouse.GPG221.AI.Navigation;
 
-namespace GPG221.AI.Editors
+namespace Westhouse.GPG221.AI.Editors
 {
 
 [CustomEditor(typeof(NavSolver))]

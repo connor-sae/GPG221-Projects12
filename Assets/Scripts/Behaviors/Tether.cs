@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class Tether : Seek
+namespace Westhouse.GPG221.AI.Agent
 {
-    public float distanceBias;
-
-    protected override void Steer(Vector3 force)
+    public class Tether : Seek
     {
-        float d = Vector3.Distance(vehicle.position, target.position);
-        base.Steer(force * (d / distanceBias));
+        public float distanceBias;
+
+        protected override void Steer(Vector3 force)
+        {
+            float d = Vector3.Distance(vehicle.position, target.position);
+            base.Steer(force * (d / distanceBias));
+        }
     }
 }

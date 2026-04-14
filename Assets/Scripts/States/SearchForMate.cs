@@ -1,52 +1,56 @@
-using GPG221.AI;
+using Westhouse.GPG221.AI.Agent;
+using Westhouse.GPG221.AI.Navigation;
 using UnityEngine;
 
-public class SearchForMate : VehicleState
+namespace Westhouse.GPG221.AI.Strategy
 {
-    public string mateTag;
-    private ViewConeSense viewCone;
-
-    public override void Create(GameObject aGameObject)
+    public class SearchForMate : VehicleState
     {
-        base.Create(aGameObject);
+        public string mateTag;
+        private ViewConeSense viewCone;
 
-        viewCone = vehicle.GetComponent<ViewConeSense>();
-        if(viewCone == null)
-            Debug.LogError("No ViewCone on Vehicle Object, SearchFor requires it");
-    }
+        public override void Create(GameObject aGameObject)
+        {
+            base.Create(aGameObject);
 
-    public override void Enter()
-    {
-        base.Enter();
-        Wander();
-    }
+            viewCone = vehicle.GetComponent<ViewConeSense>();
+            if(viewCone == null)
+                Debug.LogError("No ViewCone on Vehicle Object, SearchFor requires it");
+        }
 
-    void Wander()
-    {
-        Vector3 ranPos = NavUtil.GetRandomNode().transform.position;
-        GoTo(ranPos);
-    }
-
-    protected override void OnTargetReached()
-    {
-        if(gameObject.activeSelf)
+        public override void Enter()
+        {
+            base.Enter();
             Wander();
-    }
+        }
 
-    public override void Execute(float aDeltaTime, float aTimeScale)
-    {
-        base.Execute(aDeltaTime, aTimeScale);
+        void Wander()
+        {
+            Vector3 ranPos = NavUtil.GetRandomNode().transform.position;
+            GoTo(ranPos);
+        }
 
-        Collider[] potentialMates = viewCone.GetByTag(mateTag);
-        if(potentialMates.Length > 0)                          // Found search target
-            foreach(Collider col in potentialMates)
-            {
-                SurvivalAgent agent = col.GetComponent<SurvivalAgent>();
-                if(!agent.IsHungry() && agent.IsMature())              // only target if other mate is also not hungry and mature
+        protected override void OnTargetReached()
+        {
+            if(gameObject.activeSelf)
+                Wander();
+        }
+
+        public override void Execute(float aDeltaTime, float aTimeScale)
+        {
+            base.Execute(aDeltaTime, aTimeScale);
+
+            Collider[] potentialMates = viewCone.GetByTag(mateTag);
+            if(potentialMates.Length > 0)                          // Found search target
+                foreach(Collider col in potentialMates)
                 {
-                    (vehicle as SurvivalAgent).targetMate = agent;       // set as target mate
-                    break;
+                    SurvivalAgent agent = col.GetComponent<SurvivalAgent>();
+                    if(!agent.IsHungry() && agent.IsMature())              // only target if other mate is also not hungry and mature
+                    {
+                        (vehicle as SurvivalAgent).targetMate = agent;       // set as target mate
+                        break;
+                    }
                 }
-            }
+        }
     }
 }

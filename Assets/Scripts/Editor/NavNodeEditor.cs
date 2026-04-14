@@ -1,7 +1,8 @@
 using UnityEditor;
 using UnityEngine;
+using Westhouse.GPG221.AI.Navigation;
 
-namespace GPG221.AI.Editors
+namespace Westhouse.GPG221.AI.Editors
 {
 
 

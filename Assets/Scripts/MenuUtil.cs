@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuUtil : MonoBehaviour
+namespace Westhouse
 {
-    public void LoadScene(int sceneIndex)
+    public class MenuUtil : MonoBehaviour
     {
-        SceneManager.LoadScene(sceneIndex);
-    }
+        public void LoadScene(int sceneIndex)
+        {
+            SceneManager.LoadScene(sceneIndex);
+        }
 
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
+        public void LoadScene(string sceneName)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }

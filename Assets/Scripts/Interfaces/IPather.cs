@@ -1,7 +1,10 @@
 using System;
-using GPG221.AI;
-public interface IPather
+
+namespace Westhouse.GPG221.AI.Navigation
 {
-    public void SetPath(NavPath path, Action onPathCompleteCallback);
-    public NavPath GetPath();
+    public interface IPather
+    {
+        public void SetPath(NavPath path, Action onPathCompleteCallback);
+        public NavPath GetPath();
+    }
 }

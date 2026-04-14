@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Westhouse.GPG221.AI.Agent
+{
+
 [RequireComponent(typeof(SenseVehicles))]
 public class Alignment : Behavior
 {
@@ -45,4 +48,5 @@ public class Alignment : Behavior
         if(alignment != null)
             Gizmos.DrawRay(vehicle.position, alignment*5);
     }
+}
 }

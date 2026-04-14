@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GPG221.AI.Solvers
+namespace Westhouse.GPG221.AI.Navigation
 {
 
     public class AStarSolver : NavSolver

@@ -1,87 +1,90 @@
 using UnityEngine;
 using Anthill.AI;
+using Westhouse.GPG221.AI.Agent;
 
-[RequireComponent(typeof(SurvivalAgent))]
-public class PreySense : MonoBehaviour, ISense
+namespace Westhouse.GPG221.AI.Strategy
 {
-    private ViewConeSense viewCone;
-    private SurvivalAgent agent;
-    void Awake()
+    [RequireComponent(typeof(SurvivalAgent))]
+    public class PreySense : MonoBehaviour, ISense
     {
-        viewCone = GetComponent<ViewConeSense>();
-        agent = GetComponent<SurvivalAgent>();
-    }
-    public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
-    {
-        aWorldState.Set(PreySensesEnum.bred, false);
-        aWorldState.Set(PreySensesEnum.hungry, IsHungry());
-        aWorldState.Set(PreySensesEnum.mature, IsMature());
-        aWorldState.Set(PreySensesEnum.nearMate, NearMate());
-        aWorldState.Set(PreySensesEnum.seeFood, SeeFood());
-        aWorldState.Set(PreySensesEnum.seeMate, SeeMate());
-        aWorldState.Set(PreySensesEnum.seePreditor, SeePreditor());
-        aWorldState.Set(PreySensesEnum.starving, IsStarving());
-    }
-
-    #region Conditions
-
-    bool IsHungry()
-    {   
-        return agent.IsHungry();
-    }
-
-    bool IsMature()
-    {
-        return agent.IsMature();
-    }
-
-    bool SeeMate()
-    {
-        return agent.targetMate != null;
-
-    }
-
-    bool NearMate()
-    {
-        
-        return SeeMate() && Vector3.Distance(agent.position, agent.targetMate.position) <= agent.matingDistance;
-    }
-    
-    bool SeePreditor()
-    {
-        Collider[] nearbyPreditors = viewCone.GetByTag("Preditor");
-        
-        foreach(Collider col in nearbyPreditors)
+        private ViewConeSense viewCone;
+        private SurvivalAgent agent;
+        void Awake()
         {
-            //if(col.GetComponent<SurvivalAgent>().IsMature()) // Preditors mature enough to pose a threat?
-                return true;
+            viewCone = GetComponent<ViewConeSense>();
+            agent = GetComponent<SurvivalAgent>();
         }
-        return false;
-    }
+        public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
+        {
+            aWorldState.Set(PreySensesEnum.bred, false);
+            aWorldState.Set(PreySensesEnum.hungry, IsHungry());
+            aWorldState.Set(PreySensesEnum.mature, IsMature());
+            aWorldState.Set(PreySensesEnum.nearMate, NearMate());
+            aWorldState.Set(PreySensesEnum.seeFood, SeeFood());
+            aWorldState.Set(PreySensesEnum.seeMate, SeeMate());
+            aWorldState.Set(PreySensesEnum.seePreditor, SeePreditor());
+            aWorldState.Set(PreySensesEnum.starving, IsStarving());
+        }
 
-    bool SeeFood()
+        #region Conditions
+
+        bool IsHungry()
+        {   
+            return agent.IsHungry();
+        }
+
+        bool IsMature()
+        {
+            return agent.IsMature();
+        }
+
+        bool SeeMate()
+        {
+            return agent.targetMate != null;
+
+        }
+
+        bool NearMate()
+        {
+            
+            return SeeMate() && Vector3.Distance(agent.position, agent.targetMate.position) <= agent.matingDistance;
+        }
+        
+        bool SeePreditor()
+        {
+            Collider[] nearbyPreditors = viewCone.GetByTag("Preditor");
+            
+            foreach(Collider col in nearbyPreditors)
+            {
+                //if(col.GetComponent<SurvivalAgent>().IsMature()) // Preditors mature enough to pose a threat?
+                    return true;
+            }
+            return false;
+        }
+
+        bool SeeFood()
+        {
+            return viewCone.GetByTag("Food").Length > 0;
+        }
+
+        bool IsStarving()
+        {
+            return agent.IsStarving();
+        }
+
+        #endregion
+
+        public enum PreySensesEnum
     {
-        return viewCone.GetByTag("Food").Length > 0;
+        hungry = 0,
+        mature = 1,
+        seeMate = 2,
+        nearMate = 3,
+        seePreditor = 4,
+        bred = 5,
+        seeFood = 6,
+        starving = 7
     }
-
-    bool IsStarving()
-    {
-        return agent.IsStarving();
+        
     }
-
-    #endregion
-
-    public enum PreySensesEnum
-{
-	hungry = 0,
-	mature = 1,
-	seeMate = 2,
-	nearMate = 3,
-	seePreditor = 4,
-	bred = 5,
-	seeFood = 6,
-	starving = 7
 }
-    
-}
-

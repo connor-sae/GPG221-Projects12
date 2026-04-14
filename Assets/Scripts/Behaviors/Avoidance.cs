@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
+namespace Westhouse.GPG221.AI.Agent
+{
+
 
 [RequireComponent(typeof(SenseVehicles))]
 public class Avoidance : Behavior
@@ -36,4 +37,5 @@ public class Avoidance : Behavior
         
         Steer(avoidance);
     }
+}
 }

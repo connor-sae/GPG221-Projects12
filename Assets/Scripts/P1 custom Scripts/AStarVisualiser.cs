@@ -1,7 +1,6 @@
-using GPG221.AI.Solvers;
 using UnityEngine;
 
-namespace GPG221.AI
+namespace Westhouse.GPG221.AI.Navigation
 {
 
     public class AStarVisualiser : AStarSolver

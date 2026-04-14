@@ -1,28 +1,31 @@
 using UnityEngine;
 
-public class ObjectActiveRandomiser : MonoBehaviour
-{
-    [SerializeField] private float activeRate = 0.3f;
-
-    [SerializeField] private GameObject[] objects;
-
-    public void Randomise()
+namespace Westhouse.GPG221
     {
-        foreach(GameObject obj in objects)
+    public class ObjectActiveRandomiser : MonoBehaviour
+    {
+        [SerializeField] private float activeRate = 0.3f;
+
+        [SerializeField] private GameObject[] objects;
+
+        public void Randomise()
         {
-            if(Random.Range(0, 1f) < activeRate)
+            foreach(GameObject obj in objects)
             {
-                obj.SetActive(true);
-            }else
-                obj.SetActive(false);
+                if(Random.Range(0, 1f) < activeRate)
+                {
+                    obj.SetActive(true);
+                }else
+                    obj.SetActive(false);
+            }
         }
-    }
 
-    public void Clear()
-    {
-        foreach(GameObject obj in objects)
+        public void Clear()
         {
-            obj.SetActive(false);
+            foreach(GameObject obj in objects)
+            {
+                obj.SetActive(false);
+            }
         }
     }
 }

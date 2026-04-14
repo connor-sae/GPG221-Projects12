@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GPG221.AI
+namespace Westhouse.GPG221.AI.Navigation
 {
     
     [System.Serializable]

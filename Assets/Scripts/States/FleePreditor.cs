@@ -1,6 +1,7 @@
-using UnityEngine;
-
-public class FleePreditor : VehicleState
+namespace Westhouse.GPG221.AI.Strategy
 {
-    //somth;
+    public class FleePreditor : VehicleState
+    {
+        //somth;
+    }
 }
